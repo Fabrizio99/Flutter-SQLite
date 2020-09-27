@@ -4,7 +4,7 @@ class MapasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return FutureBuilder<List<ScanModel>>(
+    return FutureBuilder<List<ScanModel>>(
       future  : DBProvider.db.getTodosScan(),
       builder : (BuildContext context, AsyncSnapshot<List<ScanModel>> snapshot){
         if(snapshot.hasError){
@@ -26,7 +26,7 @@ class MapasPage extends StatelessWidget {
           )
         );
       }
-    );*/
-    return Text('hola pto');
+    );
+    //return Text('hola pto');
   }
 }
