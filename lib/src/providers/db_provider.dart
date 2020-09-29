@@ -14,7 +14,7 @@ class DBProvider{
 
   Future<Database> get database async{
     print('entra a database');
-    print('database $database');
+    //print('database $database');
     if(_database != null)  return _database;
     _database = await initDB();
     return _database;
@@ -22,15 +22,15 @@ class DBProvider{
 
   initDB()async{
     //el path donde se va a encontrar o se encuentra la DB
-    print('entra a init');
+    //print('entra a init');
     print('llega aca');
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     //String documentsDirectory = await getDatabasesPath();
-    print('ruta del directorio de documentos ${documentsDirectory.path}');
-    print('ruta del directorio de documentos ${documentsDirectory.path}/ScansDB.db');
+    //print('ruta del directorio de documentos ${documentsDirectory.path}');
+    //print('ruta del directorio de documentos ${documentsDirectory.path}/ScansDB.db');
     //join(p1,p2) retorna las partes de las rutas dadas en una sola ruta
     //joint('path','p1') -> 'path/p1'
-    String path = join(documentsDirectory.path,'ScansDB.db');
+    String path = join(documentsDirectory.path,'ScanDB.db');
 
 
     return await openDatabase(
@@ -41,11 +41,11 @@ class DBProvider{
       //onCreate es invocado si la db no ha sido creada, puede usarse para crear las tablas requeridas
       onCreate: (Database db, int version)async{
         await db.execute(
-          'CREATE TABLE Scans ('
-          ' id INTEGER PRIMARY KEY,'
-          ' tipo TEXT,'
-          ' valor TEXT'
-          ' )'
+            'CREATE TABLE Scans ('
+            ' id INTEGER PRIMARY KEY,'
+            ' tipo TEXT,'
+            ' valor TEXT'
+            ')'
         );
       }
     );
@@ -107,7 +107,7 @@ class DBProvider{
     final res = await db.delete('Scans',where: 'id = ?',whereArgs: [id]);
     return res;
   }
-  Future<int>deleteAll(int id)async{
+  Future<int>deleteAll()async{
     final db = await database;
     final res = await db.rawDelete('DELETE FROM Scans');
     return res;
